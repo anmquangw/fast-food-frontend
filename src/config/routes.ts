@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom";
 import IRoute from "../interfaces/route";
 import path from "./base.path";
 // HomePage
@@ -142,6 +143,11 @@ const authRoutes: IRoute[] = [
   {
     ...path.bannerEdit,
     component: BannerCreatePage,
+    exact: true,
+  },
+  {
+    ...path.signin,
+    component: Redirect,
     exact: true,
   },
 ];

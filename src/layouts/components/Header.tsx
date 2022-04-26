@@ -29,6 +29,7 @@ function Header(): any {
       dispatch(authAction.signout());
     }
     history.push(`${path.signin.path}`);
+    window.location.reload();
   }
 
   return (

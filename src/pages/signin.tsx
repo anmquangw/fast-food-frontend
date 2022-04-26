@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   Link,
@@ -39,7 +40,7 @@ const SigninPage: React.FunctionComponent<
     event.preventDefault();
     dispatch(authAction.signin(form));
   }
-
+  if (auth) return <Redirect to={path.dashBoard.path} />;
   return (
     <>
       {/* <div className="text-center text-danger">error</div> */}
