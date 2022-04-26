@@ -62,12 +62,6 @@ function List() {
                   justifyContent: "space-evenly",
                 }}
               >
-                <Link
-                  className="btn btn-primary"
-                  to={`${path.foodCreate.path}/${item._id}`}
-                >
-                  <i className="menu-icon fa fa-pencil"></i>
-                </Link>
                 <button
                   type="button"
                   className="btn btn-warning"
