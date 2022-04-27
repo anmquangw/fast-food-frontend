@@ -65,7 +65,7 @@ const FoodTypePage: React.FunctionComponent<
     const { name, files }: any = e.target;
     setIsLoading(true);
     saveImage(files).then((res) => {
-      setForm({ ...form, [name]: res.data.url });
+      setForm({ ...form, [name]: res });
       setIsLoading(false);
     });
   }
