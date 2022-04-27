@@ -24,7 +24,7 @@ const BannerPage: React.FunctionComponent<
     description: "",
     img: "",
   });
-  const banners: ISales = useSelector(
+  const banners: any = useSelector(
     (state: any) => state.saleReducer,
     shallowEqual
   );
@@ -41,7 +41,7 @@ const BannerPage: React.FunctionComponent<
   }, [banners.isLoading]);
 
   useEffect(() => {
-    if (id && !banners.isLoading) setForm(banners.data[0]);
+    if (id && !banners.isLoading) setForm(banners.data);
   }, [banners.data, id, banners.isLoading]);
 
   function handleChange(e: any) {
@@ -106,8 +106,9 @@ const BannerPage: React.FunctionComponent<
                           type="text"
                           id="code"
                           className="form-control"
-                          value={form?.code}
+                          value={form?.code || ""}
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -124,8 +125,9 @@ const BannerPage: React.FunctionComponent<
                           type="number"
                           id="quantity"
                           className="form-control"
-                          value={form?.quantity}
+                          value={form?.quantity || 0}
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -141,6 +143,7 @@ const BannerPage: React.FunctionComponent<
                       id="img"
                       className="form-control-file"
                       onChange={handleUpload}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="has-success form-group">
@@ -151,8 +154,9 @@ const BannerPage: React.FunctionComponent<
                       name="description"
                       id="description"
                       className="form-control"
-                      value={form?.description}
+                      value={form?.description || ""}
                       onChange={handleChange}
+                      disabled={isLoading}
                     />
                   </div>
 

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Dispatch } from "redux";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import Loading from "../../../components/Loading";
-import { StatisticsActions } from "../../../actions";
 import { OrderActions } from "../../../actions";
 import Chartist from "chartist";
 import $ from "jquery";
@@ -14,10 +13,6 @@ function Chart() {
   );
 
   const dispatch: Dispatch<any> = useDispatch();
-
-  useEffect(() => {
-    dispatch(StatisticsActions.default.getList());
-  }, [dispatch]);
 
   useEffect(() => {
     $(document).ready(function ($: any): any {

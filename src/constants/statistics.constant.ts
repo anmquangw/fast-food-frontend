@@ -1,8 +1,12 @@
-export const GET_ALL_STATISTICS_REQUEST = "GET_ALL_STATISTICS_REQUEST";
-export const GET_ALL_STATISTICS_SUCCESS = "GET_ALL_STATISTICS_SUCCESS";
-export const GET_ALL_STATISTICS_FAILURE = "GET_ALL_STATISTICS_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_STATISTICS_REQUEST = "GET_STATISTICS_REQUEST";
-export const GET_STATISTICS_SUCCESS = "GET_STATISTICS_SUCCES";
-export const GET_STATISTICS_FAILURE = "GET_STATISTICS_FAILURE";
+class StatisticConstants extends BaseConstant {
+  public readonly STATISTIC_REQUEST: string = this.REQUEST;
+  public readonly STATISTIC_FAILURE: string = this.FAILURE;
 
+  public readonly GET_STATISTICS_SUCCESS: string =
+    this.success("GET_STATISTICS");
+  public readonly GET_STATISTIC_SUCCESS: string = this.success("GET_STATISTIC");
+}
+
+export default new StatisticConstants("STATISTIC");

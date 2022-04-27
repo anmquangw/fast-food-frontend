@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Dispatch } from "redux";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import path from "../../../config/base.path";
 import Loading from "../../../components/Loading";
 import { LockAccountActions } from "../../../actions";
 
@@ -40,7 +39,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {users.data.map((item: any, index: number) => (
+          {users.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td className="serial">{index + 1}.</td>
               <td className="avatar">

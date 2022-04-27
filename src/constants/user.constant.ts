@@ -1,19 +1,14 @@
-export const GET_ALL_USERS_REQUEST = "GET_ALL_USERS_REQUEST";
-export const GET_ALL_USERS_SUCCESS = "GET_ALL_USERS_SUCCESS";
-export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_FAILURE = "GET_USER_FAILURE";
+class UserConstants extends BaseConstant {
+  public readonly USER_REQUEST: string = this.REQUEST;
+  public readonly USER_FAILURE: string = this.FAILURE;
 
-export const CREATE_USER_REQUEST = "CREATE_USER_REQUEST";
-export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
-export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE";
+  public readonly GET_USERS_SUCCESS: string = this.success("GET_USERS");
+  public readonly GET_USER_SUCCESS: string = this.success("GET_USER");
+  public readonly CREATE_USER_SUCCESS: string = this.success("CREATE_USER");
+  public readonly UPDATE_USER_SUCCESS: string = this.success("UPDATE_USER");
+  public readonly DELETE_USER_SUCCESS: string = this.success("DELETE_USER");
+}
 
-export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
-export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
-export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
-
-export const DELETE_USER_REQUEST = "DELETE_USER_REQUEST";
-export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
-export const DELETE_USER_FAILURE = "DELETE_USER_FAILURE";
+export default new UserConstants("USER");

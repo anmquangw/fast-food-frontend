@@ -3,105 +3,55 @@ import { initState } from "./initState.reducers";
 
 export default function UserReducer(state = initState, action: any) {
   switch (action.type) {
-    // List
-    case UserConstants.GET_ALL_USERS_REQUEST:
+    case UserConstants.default.USER_REQUEST:
       return {
         ...initState,
+        datas: state.datas,
+        data: state.data,
         isLoading: true,
       };
-    case UserConstants.GET_ALL_USERS_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: action.payload.data,
-      };
-    case UserConstants.GET_ALL_USERS_FAILURE:
+    case UserConstants.default.USER_FAILURE:
       return {
         ...initState,
         isError: true,
         errorMessage: action.payload,
       };
 
-    // Detail
-    case UserConstants.GET_USER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case UserConstants.GET_USER_SUCCESS:
+    case UserConstants.default.GET_USERS_SUCCESS:
       return {
         ...initState,
         message: action.payload.message,
-        data: [action.payload.data, ...state.data],
+        datas: action.payload.data,
       };
-    case UserConstants.GET_USER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Create
-    case UserConstants.CREATE_USER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case UserConstants.CREATE_USER_SUCCESS:
+    case UserConstants.default.GET_USER_SUCCESS:
       return {
         ...initState,
         message: action.payload.message,
-        data: [action.payload.data, ...state.data],
+        datas: [action.payload.data, ...state.datas],
       };
-    case UserConstants.CREATE_USER_FAILURE:
+    case UserConstants.default.CREATE_USER_SUCCESS:
       return {
         ...initState,
-        isError: true,
-        errorMessage: action.payload,
+        message: action.payload.message,
+        datas: [action.payload.data, ...state.datas],
       };
-
-    // Update
-    case UserConstants.UPDATE_USER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case UserConstants.UPDATE_USER_SUCCESS:
+    case UserConstants.default.UPDATE_USER_SUCCESS:
       return {
         ...initState,
         errorMessage: "",
-        data: state.data.map((item: any) =>
+        datas: state.datas.map((item: any) =>
           item.id === action.payload.data.id ? action.payload.data : item
         ),
       };
-    case UserConstants.UPDATE_USER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Delete
-    case UserConstants.DELETE_USER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-        data: state.data,
-      };
-    case UserConstants.DELETE_USER_SUCCESS:
+    case UserConstants.default.DELETE_USER_SUCCESS:
       return {
         ...initState,
         message: action.payload.message,
-        data: state.data.filter(
+        datas: state.datas.filter(
           (item: any) => item._id !== action.payload.data._id
         ),
       };
-    case UserConstants.DELETE_USER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
+
     default:
       return state;
   }

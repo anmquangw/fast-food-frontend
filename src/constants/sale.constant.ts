@@ -1,19 +1,14 @@
-export const GET_ALL_SALES_REQUEST = "GET_ALL_SALES_REQUEST";
-export const GET_ALL_SALES_SUCCESS = "GET_ALL_SALES_SUCCESS";
-export const GET_ALL_SALES_FAILURE = "GET_ALL_SALES_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_SALE_REQUEST = "GET_SALE_REQUEST";
-export const GET_SALE_SUCCESS = "GET_SALE_SUCCESS";
-export const GET_SALE_FAILURE = "GET_SALE_FAILURE";
+class SaleConstants extends BaseConstant {
+  public readonly SALE_REQUEST: string = this.REQUEST;
+  public readonly SALE_FAILURE: string = this.FAILURE;
 
-export const CREATE_SALE_REQUEST = "CREATE_SALE_REQUEST";
-export const CREATE_SALE_SUCCESS = "CREATE_SALE_SUCCESS";
-export const CREATE_SALE_FAILURE = "CREATE_SALE_FAILURE";
+  public readonly GET_SALES_SUCCESS: string = this.success("GET_SALES");
+  public readonly GET_SALE_SUCCESS: string = this.success("GET_SALE");
+  public readonly CREATE_SALE_SUCCESS: string = this.success("CREATE_SALE");
+  public readonly UPDATE_SALE_SUCCESS: string = this.success("UPDATE_SALE");
+  public readonly DELETE_SALE_SUCCESS: string = this.success("DELETE_SALE");
+}
 
-export const UPDATE_SALE_REQUEST = "UPDATE_SALE_REQUEST";
-export const UPDATE_SALE_SUCCESS = "UPDATE_SALE_SUCCESS";
-export const UPDATE_SALE_FAILURE = "UPDATE_SALE_FAILURE";
-
-export const DELETE_SALE_REQUEST = "DELETE_SALE_REQUEST";
-export const DELETE_SALE_SUCCESS = "DELETE_SALE_SUCCESS";
-export const DELETE_SALE_FAILURE = "DELETE_SALE_FAILURE";
+export default new SaleConstants("SALE");

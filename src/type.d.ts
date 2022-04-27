@@ -65,7 +65,7 @@ interface IBaseOrderDetail {
 }
 
 interface IUsers extends IInitReducer {
-  data: [
+  datas: [
     {
       phone: string;
       password: string;
@@ -81,7 +81,7 @@ interface IUsers extends IInitReducer {
   ];
 }
 interface IFoodTypes extends IInitReducer {
-  data: [
+  datas: [
     {
       _id: string;
       name: string;
@@ -90,7 +90,7 @@ interface IFoodTypes extends IInitReducer {
   ];
 }
 interface IFoods extends IInitReducer {
-  data: [
+  datas: [
     {
       name: string;
       idFoodType: Types.ObjectId;
@@ -104,9 +104,12 @@ interface IFoods extends IInitReducer {
       img5?: string;
     }
   ];
+  data: {
+    // ...IBaseFood
+  };
 }
 interface IBanners extends IInitReducer {
-  data: [
+  datas: [
     {
       _id: string;
       name: string;
@@ -115,7 +118,7 @@ interface IBanners extends IInitReducer {
   ];
 }
 interface ISales extends IInitReducer {
-  data: [
+  datas: [
     {
       code: string;
       quantity: number;
@@ -125,7 +128,7 @@ interface ISales extends IInitReducer {
   ];
 }
 interface IOrders extends IInitReducer {
-  data: [
+  datas: [
     {
       idUser: Types.ObjectId;
       sum?: number;
@@ -140,7 +143,7 @@ interface IOrders extends IInitReducer {
   ];
 }
 interface IOrderDetails extends IInitReducer {
-  data: [
+  datas: [
     {
       idOrder?: Types.ObjectId;
       idFood?: Types.ObjectId;

@@ -19,5 +19,4 @@ export const rootReducer: any = combineReducers({
   saleReducer: saleReducer.default,
   orderReducer: orderReducer.default,
   statisticsReducer: statisticsReducer.default,
-  statisticsDetailReducer: statisticsReducer.StatisticsDetailReducer,
 });

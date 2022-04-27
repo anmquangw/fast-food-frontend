@@ -1,7 +1,7 @@
-import { Redirect } from "react-router-dom";
 import IRoute from "../interfaces/route";
 import path from "./base.path";
 // HomePage
+import ToHome from "../pages/toHome";
 import HomePage from "../pages/home";
 // OrderPage
 import OrderPage from "../pages/order";
@@ -147,7 +147,7 @@ const authRoutes: IRoute[] = [
   },
   {
     ...path.signin,
-    component: Redirect,
+    component: ToHome,
     exact: true,
   },
 ];

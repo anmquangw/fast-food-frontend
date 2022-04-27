@@ -7,20 +7,19 @@ import Loading from "../../../components/Loading";
 import { BannerActions } from "../../../actions";
 
 function List() {
-  const banners: IBanners = useSelector(
+  const banners: any = useSelector(
     (state: any) => state.bannerReducer,
     shallowEqual
   );
-
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(BannerActions.default.getList());
-  }, [dispatch]);
+    if (banners.datas.length === 0) dispatch(BannerActions.default.getList());
+  }, [dispatch, banners.datas]);
 
-  function handleDelete(id: string) {
+  const handleDelete = (id: string) => {
     dispatch(BannerActions.default.deleteRemove(id));
-  }
+  };
 
   if (banners.isLoading) return <Loading />;
 
@@ -36,7 +35,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {banners.data.map((item: any, index: number) => (
+          {banners.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td className="serial">{index + 1}.</td>
               <td className="avatar">
@@ -64,6 +63,7 @@ function List() {
                   type="button"
                   className="btn btn-danger"
                   onClick={(e) => handleDelete(item._id)}
+                  disabled={banners.isLoading}
                 >
                   <i className="menu-icon fa fa-trash-o"></i>
                 </button>

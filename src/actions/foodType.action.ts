@@ -6,14 +6,14 @@ class FoodType extends BaseAction {
 
   public getList = () => (dispatch: any) => {
     dispatch({
-      type: FoodTypeConstants.GET_ALL_FOOD_TYPES_REQUEST,
+      type: FoodTypeConstants.default.FOOD_TYPE_REQUEST,
     });
 
     this.axios
       .get(`${this.path}`)
       .then((result) => {
         dispatch({
-          type: FoodTypeConstants.GET_ALL_FOOD_TYPES_SUCCESS,
+          type: FoodTypeConstants.default.GET_FOOD_TYPES_SUCCESS,
           payload: result.data,
         });
       })
@@ -21,7 +21,7 @@ class FoodType extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: FoodTypeConstants.GET_ALL_FOOD_TYPES_FAILURE,
+          type: FoodTypeConstants.default.FOOD_TYPE_FAILURE,
           payload: error,
         });
       });
@@ -29,14 +29,14 @@ class FoodType extends BaseAction {
 
   public getDetail = (id: string) => (dispatch: any) => {
     dispatch({
-      type: FoodTypeConstants.GET_FOOD_TYPE_REQUEST,
+      type: FoodTypeConstants.default.FOOD_TYPE_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: FoodTypeConstants.GET_FOOD_TYPE_SUCCESS,
+          type: FoodTypeConstants.default.GET_FOOD_TYPE_SUCCESS,
           payload: result.data,
         });
       })
@@ -44,7 +44,7 @@ class FoodType extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: FoodTypeConstants.GET_FOOD_TYPE_FAILURE,
+          type: FoodTypeConstants.default.FOOD_TYPE_FAILURE,
           payload: error,
         });
       });
@@ -52,13 +52,13 @@ class FoodType extends BaseAction {
 
   public postCreate = (foodType: any) => (dispatch: any) => {
     dispatch({
-      type: FoodTypeConstants.CREATE_FOOD_TYPE_REQUEST,
+      type: FoodTypeConstants.default.FOOD_TYPE_REQUEST,
     });
     this.axios
       .post(`${this.path}`, foodType)
       .then((result) => {
         dispatch({
-          type: FoodTypeConstants.CREATE_FOOD_TYPE_SUCCESS,
+          type: FoodTypeConstants.default.CREATE_FOOD_TYPE_SUCCESS,
           payload: result.data,
         });
       })
@@ -66,49 +66,51 @@ class FoodType extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: FoodTypeConstants.CREATE_FOOD_TYPE_FAILURE,
+          type: FoodTypeConstants.default.FOOD_TYPE_FAILURE,
           payload: error,
         });
       });
   };
 
-  public putUpdate = (id: string, foodType: IBaseFoodType) => (dispatch: any) => {
-    dispatch({
-      type: FoodTypeConstants.CREATE_FOOD_TYPE_REQUEST,
-    });
+  public putUpdate =
+    (id: string, foodType: IBaseFoodType) => (dispatch: any) => {
+      dispatch({
+        type: FoodTypeConstants.default.FOOD_TYPE_REQUEST,
+      });
 
-    foodType = {
-      name: foodType.name,
-      img: foodType.img,
+      foodType = {
+        name: foodType.name,
+        img: foodType.img,
+      };
+
+      this.axios
+        .put(`${this.path}/${id}`, foodType)
+        .then((result) => {
+          dispatch({
+            type: FoodTypeConstants.default.UPDATE_FOOD_TYPE_SUCCESS,
+            payload: result.data,
+          });
+        })
+        .catch((error) => {
+          console.log({ error });
+
+          dispatch({
+            type: FoodTypeConstants.default.FOOD_TYPE_FAILURE,
+            payload: error,
+          });
+        });
     };
-
-    this.axios
-      .put(`${this.path}/${id}`, foodType)
-      .then((result) => {
-        dispatch({
-          type: FoodTypeConstants.CREATE_FOOD_TYPE_SUCCESS,
-        });
-      })
-      .catch((error) => {
-        console.log({ error });
-
-        dispatch({
-          type: FoodTypeConstants.CREATE_FOOD_TYPE_FAILURE,
-          payload: error,
-        });
-      });
-  };
 
   public deleteRemove = (id: string) => (dispatch: any) => {
     dispatch({
-      type: FoodTypeConstants.DELETE_FOOD_TYPE_REQUEST,
+      type: FoodTypeConstants.default.FOOD_TYPE_REQUEST,
     });
 
     this.axios
       .delete(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: FoodTypeConstants.DELETE_FOOD_TYPE_SUCCESS,
+          type: FoodTypeConstants.default.DELETE_FOOD_TYPE_SUCCESS,
           payload: result.data,
         });
       })
@@ -116,7 +118,7 @@ class FoodType extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: FoodTypeConstants.DELETE_FOOD_TYPE_FAILURE,
+          type: FoodTypeConstants.default.FOOD_TYPE_FAILURE,
           payload: error,
         });
       });

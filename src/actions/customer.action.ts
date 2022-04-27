@@ -4,14 +4,14 @@ import { User as UserConstants } from "../constants";
 class Customer extends UserAction {
   public getList = () => (dispatch: any) => {
     dispatch({
-      type: UserConstants.GET_ALL_USERS_REQUEST,
+      type: UserConstants.default.USER_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/role/1`)
       .then((result) => {
         dispatch({
-          type: UserConstants.GET_ALL_USERS_SUCCESS,
+          type: UserConstants.default.GET_USERS_SUCCESS,
           payload: result.data,
         });
       })
@@ -19,7 +19,7 @@ class Customer extends UserAction {
         console.log({ error });
 
         dispatch({
-          type: UserConstants.GET_ALL_USERS_FAILURE,
+          type: UserConstants.default.USER_FAILURE,
           payload: error,
         });
       });

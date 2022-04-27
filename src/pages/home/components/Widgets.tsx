@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { Dispatch } from "redux";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { StatisticsActions } from "../../../actions";
+import { useSelector, shallowEqual } from "react-redux";
 import Loading from "../../../components/Loading";
 
 function Widgets() {
@@ -9,9 +7,8 @@ function Widgets() {
   const [ordersCount, setOrdersCount] = useState(0);
   const [customersCount, setCustomersCount] = useState(0);
 
-  const dispatch: Dispatch<any> = useDispatch();
-  const statisticsDetail: any = useSelector(
-    (state: any) => state.statisticsDetailReducer,
+  const statistics: any = useSelector(
+    (state: any) => state.statisticsReducer,
     shallowEqual
   );
 
@@ -23,16 +20,12 @@ function Widgets() {
   }
 
   useEffect(() => {
-    dispatch(StatisticsActions.default.getDetail());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (statisticsDetail.data[0]) {
-      setOrdersSum(statisticsDetail?.data[0]?.ordersSum[0]?.sum);
-      setOrdersCount(statisticsDetail?.data[0]?.ordersCount);
-      setCustomersCount(statisticsDetail?.data[0]?.customersCount);
+    if (Object.keys(statistics.data).length > 0) {
+      setOrdersSum(statistics?.data?.ordersSum[0]?.sum);
+      setOrdersCount(statistics?.data?.ordersCount);
+      setCustomersCount(statistics?.data?.customersCount);
     }
-  }, [statisticsDetail]);
+  }, [statistics]);
 
   return (
     <>
@@ -47,7 +40,7 @@ function Widgets() {
                 <div className="stat-content">
                   <div className="text-left dib">
                     <div className="stat-text">
-                      {statisticsDetail.isLoading ? (
+                      {statistics.isLoading ? (
                         <Loading />
                       ) : (
                         <span className="count">
@@ -73,7 +66,7 @@ function Widgets() {
                 <div className="stat-content">
                   <div className="text-left dib">
                     <div className="stat-text">
-                      {statisticsDetail.isLoading ? (
+                      {statistics.isLoading ? (
                         <Loading />
                       ) : (
                         <>
@@ -99,7 +92,7 @@ function Widgets() {
                 <div className="stat-content">
                   <div className="text-left dib">
                     <div className="stat-text">
-                      {statisticsDetail.isLoading ? (
+                      {statistics.isLoading ? (
                         <Loading />
                       ) : (
                         <>

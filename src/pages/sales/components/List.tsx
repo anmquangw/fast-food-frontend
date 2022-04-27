@@ -7,7 +7,7 @@ import Loading from "../../../components/Loading";
 import { SaleActions } from "../../../actions";
 
 function List() {
-  const sales: ISales = useSelector(
+  const sales: any = useSelector(
     (state: any) => state.saleReducer,
     shallowEqual
   );
@@ -15,8 +15,8 @@ function List() {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(SaleActions.default.getList());
-  }, [dispatch]);
+    if (sales.datas.length === 0) dispatch(SaleActions.default.getList());
+  }, [dispatch, sales.datas]);
 
   function handleDelete(id: string) {
     dispatch(SaleActions.default.deleteRemove(id));
@@ -37,7 +37,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {sales.data.map((item: any, index: number) => (
+          {sales.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td>{index + 1}.</td>
               <td>{item.code}</td>

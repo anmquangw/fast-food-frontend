@@ -1,19 +1,14 @@
-export const GET_ALL_BANNERS_REQUEST = "GET_ALL_BANNERS_REQUEST";
-export const GET_ALL_BANNERS_SUCCESS = "GET_ALL_BANNERS_SUCCESS";
-export const GET_ALL_BANNERS_FAILURE = "GET_ALL_BANNERS_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_BANNER_REQUEST = "GET_BANNER_REQUEST";
-export const GET_BANNER_SUCCESS = "GET_BANNER_SUCCESS";
-export const GET_BANNER_FAILURE = "GET_BANNER_FAILURE";
+class BannerConstants extends BaseConstant {
+  public readonly BANNER_REQUEST: string = this.REQUEST;
+  public readonly BANNER_FAILURE: string = this.FAILURE;
 
-export const CREATE_BANNER_REQUEST = "CREATE_BANNER_REQUEST";
-export const CREATE_BANNER_SUCCESS = "CREATE_BANNER_SUCCESS";
-export const CREATE_BANNER_FAILURE = "CREATE_BANNER_FAILURE";
+  public readonly GET_BANNERS_SUCCESS: string = this.success("GET_BANNERS");
+  public readonly GET_BANNER_SUCCESS: string = this.success("GET_BANNER");
+  public readonly CREATE_BANNER_SUCCESS: string = this.success("CREATE_BANNER");
+  public readonly UPDATE_BANNER_SUCCESS: string = this.success("UPDATE_BANNER");
+  public readonly DELETE_BANNER_SUCCESS: string = this.success("DELETE_BANNER");
+}
 
-export const UPDATE_BANNER_REQUEST = "UPDATE_BANNER_REQUEST";
-export const UPDATE_BANNER_SUCCESS = "UPDATE_BANNER_SUCCESS";
-export const UPDATE_BANNER_FAILURE = "UPDATE_BANNER_FAILURE";
-
-export const DELETE_BANNER_REQUEST = "DELETE_BANNER_REQUEST";
-export const DELETE_BANNER_SUCCESS = "DELETE_BANNER_SUCCESS";
-export const DELETE_BANNER_FAILURE = "DELETE_BANNER_FAILURE";
+export default new BannerConstants("BANNER");

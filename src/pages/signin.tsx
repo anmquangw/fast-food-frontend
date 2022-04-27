@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
-import {
-  Link,
-  useHistory,
-  RouteComponentProps,
-  withRouter,
-} from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import IPage from "../interfaces/page";
 import authAction from "../actions/auth.action";
-import path from "../config/base.path";
+import Loading from "../components/Loading";
 
 const SigninPage: React.FunctionComponent<
   IPage & RouteComponentProps<any>
 > = () => {
-  const auth: string = useSelector(
+  const auth: any = useSelector(
     (state: any) => state.authReducer,
     shallowEqual
   );
   const dispatch: Dispatch<any> = useDispatch();
-  const history = useHistory();
 
-  useEffect(() => {
-    if (auth) {
-      history.push(`${path.dashBoard.path}`);
-    }
-  });
   const [form, setForm] = useState({
     phone: "",
     password: "",
@@ -40,10 +28,13 @@ const SigninPage: React.FunctionComponent<
     event.preventDefault();
     dispatch(authAction.signin(form));
   }
-  if (auth) return <Redirect to={path.dashBoard.path} />;
+console.log(auth.isAuthenticated);
   return (
     <>
-      {/* <div className="text-center text-danger">error</div> */}
+      {auth.isLoading && <Loading />}
+      {auth.isError && (
+        <div className="text-center text-danger">{auth.errorMessage}</div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Số điện thoại</label>
@@ -54,6 +45,7 @@ const SigninPage: React.FunctionComponent<
             placeholder="Số điện thoại"
             onChange={handleChange}
             autoComplete="off"
+            disabled={auth.isLoading}
           />
         </div>
         <div className="form-group">
@@ -65,6 +57,7 @@ const SigninPage: React.FunctionComponent<
             placeholder="Mật khẩu"
             onChange={handleChange}
             autoComplete="off"
+            disabled={auth.isLoading}
           />
         </div>
         <div className="checkbox">
@@ -78,6 +71,7 @@ const SigninPage: React.FunctionComponent<
         <button
           type="submit"
           className="btn btn-success btn-flat m-b-30 m-t-30"
+          disabled={auth.isLoading}
         >
           Đăng nhập
         </button>

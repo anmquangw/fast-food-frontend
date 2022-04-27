@@ -7,7 +7,7 @@ import Loading from "../../../components/Loading";
 import { FoodTypeActions } from "../../../actions";
 
 function List() {
-  const foodTypes: IFoodTypes = useSelector(
+  const foodTypes: any = useSelector(
     (state: any) => state.foodTypeReducer,
     shallowEqual
   );
@@ -15,8 +15,9 @@ function List() {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(FoodTypeActions.default.getList());
-  }, [dispatch]);
+    if (foodTypes.datas.length === 0)
+      dispatch(FoodTypeActions.default.getList());
+  }, [dispatch, foodTypes.datas]);
 
   function handleDelete(id: string) {
     dispatch(FoodTypeActions.default.deleteRemove(id));
@@ -36,7 +37,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {foodTypes.data.map((item: any, index: number) => (
+          {foodTypes.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td className="serial">{index + 1}.</td>
               <td className="avatar">

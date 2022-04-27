@@ -7,7 +7,7 @@ import Loading from "../../../components/Loading";
 import { FoodActions } from "../../../actions";
 
 function List() {
-  const foods: IFoods = useSelector(
+  const foods: any = useSelector(
     (state: any) => state.foodReducer,
     shallowEqual
   );
@@ -15,8 +15,9 @@ function List() {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(FoodActions.default.getList());
-  }, [dispatch]);
+    if (foods.datas.length === 0)
+      dispatch(FoodActions.default.getList());
+  }, [dispatch, foods.datas]);
 
   function handleDelete(id: string) {
     dispatch(FoodActions.default.deleteRemove(id));
@@ -43,7 +44,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {foods.data.map((item: any, index: number) => (
+          {foods.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td className="serial">{index + 1}.</td>
               <td className="avatar">

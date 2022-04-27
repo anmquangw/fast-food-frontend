@@ -1,19 +1,14 @@
-export const GET_ALL_ORDERS_REQUEST = "GET_ALL_ORDERS_REQUEST";
-export const GET_ALL_ORDERS_SUCCESS = "GET_ALL_ORDERS_SUCCESS";
-export const GET_ALL_ORDERS_FAILURE = "GET_ALL_ORDERS_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
-export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
-export const GET_ORDER_FAILURE = "GET_ORDER_FAILURE";
+class OrderConstants extends BaseConstant {
+  public readonly ORDER_REQUEST: string = this.REQUEST;
+  public readonly ORDER_FAILURE: string = this.FAILURE;
 
-export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
-export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS";
-export const CREATE_ORDER_FAILURE = "CREATE_ORDER_FAILURE";
+  public readonly GET_ORDERS_SUCCESS: string = this.success("GET_ORDERS");
+  public readonly GET_ORDER_SUCCESS: string = this.success("GET_ORDER");
+  public readonly CREATE_ORDER_SUCCESS: string = this.success("CREATE_ORDER");
+  public readonly UPDATE_ORDER_SUCCESS: string = this.success("UPDATE_ORDER");
+  public readonly DELETE_ORDER_SUCCESS: string = this.success("DELETE_ORDER");
+}
 
-export const UPDATE_ORDER_REQUEST = "UPDATE_ORDER_REQUEST";
-export const UPDATE_ORDER_SUCCESS = "UPDATE_ORDER_SUCCESS";
-export const UPDATE_ORDER_FAILURE = "UPDATE_ORDER_FAILURE";
-
-export const DELETE_ORDER_REQUEST = "DELETE_ORDER_REQUEST";
-export const DELETE_ORDER_SUCCESS = "DELETE_ORDER_SUCCESS";
-export const DELETE_ORDER_FAILURE = "DELETE_ORDER_FAILURE";
+export default new OrderConstants("ORDER");

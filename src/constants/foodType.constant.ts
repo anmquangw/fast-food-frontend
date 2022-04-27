@@ -1,19 +1,18 @@
-export const GET_ALL_FOOD_TYPES_REQUEST = "GET_ALL_FOOD_TYPES_REQUEST";
-export const GET_ALL_FOOD_TYPES_SUCCESS = "GET_ALL_FOOD_TYPES_SUCCESS";
-export const GET_ALL_FOOD_TYPES_FAILURE = "GET_ALL_FOOD_TYPES_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_FOOD_TYPE_REQUEST = "GET_FOOD_TYPE_REQUEST";
-export const GET_FOOD_TYPE_SUCCESS = "GET_FOOD_TYPE_SUCCESS";
-export const GET_FOOD_TYPE_FAILURE = "GET_FOOD_TYPE_FAILURE";
+class FoodTypeConstants extends BaseConstant {
+  public readonly FOOD_TYPE_REQUEST: string = this.REQUEST;
+  public readonly FOOD_TYPE_FAILURE: string = this.FAILURE;
 
-export const CREATE_FOOD_TYPE_REQUEST = "CREATE_FOOD_TYPE_REQUEST";
-export const CREATE_FOOD_TYPE_SUCCESS = "CREATE_FOOD_TYPE_SUCCESS";
-export const CREATE_FOOD_TYPE_FAILURE = "CREATE_FOOD_TYPE_FAILURE";
+  public readonly GET_FOOD_TYPES_SUCCESS: string =
+    this.success("GET_FOOD_TYPES");
+  public readonly GET_FOOD_TYPE_SUCCESS: string = this.success("GET_FOOD_TYPE");
+  public readonly CREATE_FOOD_TYPE_SUCCESS: string =
+    this.success("CREATE_FOOD_TYPE");
+  public readonly UPDATE_FOOD_TYPE_SUCCESS: string =
+    this.success("UPDATE_FOOD_TYPE");
+  public readonly DELETE_FOOD_TYPE_SUCCESS: string =
+    this.success("DELETE_FOOD_TYPE");
+}
 
-export const UPDATE_FOOD_TYPE_REQUEST = "UPDATE_FOOD_TYPE_REQUEST";
-export const UPDATE_FOOD_TYPE_SUCCESS = "UPDATE_FOOD_TYPE_SUCCESS";
-export const UPDATE_FOOD_TYPE_FAILURE = "UPDATE_FOOD_TYPE_FAILURE";
-
-export const DELETE_FOOD_TYPE_REQUEST = "DELETE_FOOD_TYPE_REQUEST";
-export const DELETE_FOOD_TYPE_SUCCESS = "DELETE_FOOD_TYPE_SUCCESS";
-export const DELETE_FOOD_TYPE_FAILURE = "DELETE_FOOD_TYPE_FAILURE";
+export default new FoodTypeConstants("FOOD_TYPE");

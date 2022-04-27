@@ -5,7 +5,9 @@ import { rootReducer } from "./reducers";
 import { token } from "../helpers/cookies";
 
 const initialState = {
-  authReducer: token.get(),
+  authReducer: {
+    isAuthenticated: token.isToken(),
+  },
 };
 
 const store: Store<any> & {

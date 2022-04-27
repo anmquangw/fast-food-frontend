@@ -3,105 +3,56 @@ import { initState } from "./initState.reducers";
 
 export default function FoodTypeReducer(state = initState, action: any) {
   switch (action.type) {
-    // List
-    case FoodTypeConstants.GET_ALL_FOOD_TYPES_REQUEST:
+    case FoodTypeConstants.default.FOOD_TYPE_REQUEST:
       return {
         ...initState,
+        datas: state.datas,
+        data: state.data,
         isLoading: true,
       };
-    case FoodTypeConstants.GET_ALL_FOOD_TYPES_SUCCESS:
+    case FoodTypeConstants.default.FOOD_TYPE_FAILURE:
+      return {
+        ...initState,
+        isError: true,
+        errorMessage: action?.payload?.data?.error,
+      };
+
+    case FoodTypeConstants.default.GET_FOOD_TYPES_SUCCESS:
       return {
         ...initState,
         message: action.payload.message,
+        datas: action.payload.data,
+      };
+    case FoodTypeConstants.default.GET_FOOD_TYPE_SUCCESS:
+      return {
+        ...initState,
+        message: action.payload.message,
+        datas: state.datas,
         data: action.payload.data,
       };
-    case FoodTypeConstants.GET_ALL_FOOD_TYPES_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Detail
-    case FoodTypeConstants.GET_FOOD_TYPE_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case FoodTypeConstants.GET_FOOD_TYPE_SUCCESS:
+    case FoodTypeConstants.default.CREATE_FOOD_TYPE_SUCCESS:
       return {
         ...initState,
         message: action.payload.message,
-        data: [action.payload.data, ...state.data],
+        datas: [...state.datas, action.payload.data],
+        data: action.payload.data,
       };
-    case FoodTypeConstants.GET_FOOD_TYPE_FAILURE:
+    case FoodTypeConstants.default.UPDATE_FOOD_TYPE_SUCCESS:
       return {
         ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Create
-    case FoodTypeConstants.CREATE_FOOD_TYPE_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case FoodTypeConstants.CREATE_FOOD_TYPE_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: [action.payload.data, ...state.data],
-      };
-    case FoodTypeConstants.CREATE_FOOD_TYPE_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Update
-    case FoodTypeConstants.UPDATE_FOOD_TYPE_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case FoodTypeConstants.UPDATE_FOOD_TYPE_SUCCESS:
-      return {
-        ...initState,
-        errorMessage: "",
-        data: state.data.map((item: any) =>
-          item.id === action.payload.data.id ? action.payload.data : item
+        datas: state.datas.map((item: any) =>
+          item._id === action.payload.data._id ? action.payload.data : item
         ),
       };
-    case FoodTypeConstants.UPDATE_FOOD_TYPE_FAILURE:
+    case FoodTypeConstants.default.DELETE_FOOD_TYPE_SUCCESS:
       return {
         ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Delete
-    case FoodTypeConstants.DELETE_FOOD_TYPE_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-        data: state.data,
-      };
-    case FoodTypeConstants.DELETE_FOOD_TYPE_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: state.data.filter(
+        message: action?.payload?.message,
+        datas: state.datas.filter(
           (item: any) => item._id !== action.payload.data._id
         ),
       };
-    case FoodTypeConstants.DELETE_FOOD_TYPE_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
+
     default:
       return state;
   }

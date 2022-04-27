@@ -3,105 +3,56 @@ import { initState } from "./initState.reducers";
 
 export default function BannerReducer(state = initState, action: any) {
   switch (action.type) {
-    // List
-    case BannerConstants.GET_ALL_BANNERS_REQUEST:
+    case BannerConstants.default.BANNER_REQUEST:
       return {
         ...initState,
+        datas: state.datas,
+        data: state.data,
         isLoading: true,
       };
-    case BannerConstants.GET_ALL_BANNERS_SUCCESS:
+    case BannerConstants.default.BANNER_FAILURE:
       return {
         ...initState,
-        message: action.payload.message,
+        isError: true,
+        errorMessage: action.payload,
+      };
+
+    case BannerConstants.default.GET_BANNERS_SUCCESS:
+      return {
+        ...initState,
+        message: action?.payload?.message,
+        datas: action.payload.data,
+      };
+    case BannerConstants.default.GET_BANNER_SUCCESS:
+      return {
+        ...initState,
+        message: action?.payload?.message,
+        datas: state.datas,
         data: action.payload.data,
       };
-    case BannerConstants.GET_ALL_BANNERS_FAILURE:
+    case BannerConstants.default.CREATE_BANNER_SUCCESS:
       return {
         ...initState,
-        isError: true,
-        errorMessage: action.payload,
+        message: action?.payload?.message,
+        datas: [action.payload.data, ...state.datas],
+        data: action.payload.data,
       };
-
-    // Detail
-    case BannerConstants.GET_BANNER_REQUEST:
+    case BannerConstants.default.UPDATE_BANNER_SUCCESS:
       return {
         ...initState,
-        isLoading: true,
-      };
-    case BannerConstants.GET_BANNER_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: [action.payload.data],
-      };
-    case BannerConstants.GET_BANNER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Create
-    case BannerConstants.CREATE_BANNER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case BannerConstants.CREATE_BANNER_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: [action.payload.data, ...state.data],
-      };
-    case BannerConstants.CREATE_BANNER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Update
-    case BannerConstants.UPDATE_BANNER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-      };
-    case BannerConstants.UPDATE_BANNER_SUCCESS:
-      return {
-        ...initState,
-        errorMessage: "",
-        data: state.data.map((item: any) =>
-          item.id === action.payload.data.id ? action.payload.data : item
+        datas: state.datas.map((item: any) =>
+          item._id === action.payload.data._id ? action.payload.data : item
         ),
       };
-    case BannerConstants.UPDATE_BANNER_FAILURE:
+    case BannerConstants.default.DELETE_BANNER_SUCCESS:
       return {
         ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
-
-    // Delete
-    case BannerConstants.DELETE_BANNER_REQUEST:
-      return {
-        ...initState,
-        isLoading: true,
-        data: state.data,
-      };
-    case BannerConstants.DELETE_BANNER_SUCCESS:
-      return {
-        ...initState,
-        message: action.payload.message,
-        data: state.data.filter(
+        message: action?.payload?.message,
+        datas: state.datas.filter(
           (item: any) => item._id !== action.payload.data._id
         ),
       };
-    case BannerConstants.DELETE_BANNER_FAILURE:
-      return {
-        ...initState,
-        isError: true,
-        errorMessage: action.payload,
-      };
+
     default:
       return state;
   }

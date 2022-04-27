@@ -22,7 +22,7 @@ const FoodTypePage: React.FunctionComponent<
     name: "",
     img: "",
   });
-  const foodTypes: IFoodTypes = useSelector(
+  const foodTypes: any = useSelector(
     (state: any) => state.foodTypeReducer,
     shallowEqual
   );
@@ -39,7 +39,7 @@ const FoodTypePage: React.FunctionComponent<
   }, [foodTypes.isLoading]);
 
   useEffect(() => {
-    if (id && !foodTypes.isLoading) setForm(foodTypes.data[0]);
+    if (id && !foodTypes.isLoading) setForm(foodTypes.data);
   }, [foodTypes.data, id, foodTypes.isLoading]);
 
   function handleChange(e: any) {
@@ -102,8 +102,9 @@ const FoodTypePage: React.FunctionComponent<
                       type="text"
                       id="name"
                       className="form-control"
-                      value={form?.name}
+                      value={form?.name || ""}
                       onChange={handleChange}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="has-warning form-group">
@@ -116,6 +117,7 @@ const FoodTypePage: React.FunctionComponent<
                       id="img"
                       className="form-control-file"
                       onChange={handleUpload}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="form-actions form-group">

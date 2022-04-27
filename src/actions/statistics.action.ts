@@ -6,14 +6,14 @@ class Statistics extends BaseAction {
 
   public getList = () => (dispatch: any) => {
     dispatch({
-      type: StatisticsConstants.GET_ALL_STATISTICS_REQUEST,
+      type: StatisticsConstants.default.STATISTIC_REQUEST,
     });
 
     this.axios
       .get(`${this.path}`)
       .then((result) => {
         dispatch({
-          type: StatisticsConstants.GET_ALL_STATISTICS_SUCCESS,
+          type: StatisticsConstants.default.GET_STATISTICS_SUCCESS,
           payload: result.data,
         });
       })
@@ -21,7 +21,7 @@ class Statistics extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: StatisticsConstants.GET_ALL_STATISTICS_FAILURE,
+          type: StatisticsConstants.default.STATISTIC_FAILURE,
           payload: error,
         });
       });
@@ -29,14 +29,14 @@ class Statistics extends BaseAction {
 
   public getDetail = () => (dispatch: any) => {
     dispatch({
-      type: StatisticsConstants.GET_STATISTICS_REQUEST,
+      type: StatisticsConstants.default.STATISTIC_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/detail`)
       .then((result) => {
         dispatch({
-          type: StatisticsConstants.GET_STATISTICS_SUCCESS,
+          type: StatisticsConstants.default.GET_STATISTIC_SUCCESS,
           payload: result.data,
         });
       })
@@ -44,7 +44,7 @@ class Statistics extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: StatisticsConstants.GET_STATISTICS_FAILURE,
+          type: StatisticsConstants.default.STATISTIC_FAILURE,
           payload: error,
         });
       });

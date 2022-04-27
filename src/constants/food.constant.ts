@@ -1,19 +1,14 @@
-export const GET_ALL_FOODS_REQUEST = "GET_ALL_FOODS_REQUEST";
-export const GET_ALL_FOODS_SUCCESS = "GET_ALL_FOODS_SUCCESS";
-export const GET_ALL_FOODS_FAILURE = "GET_ALL_FOODS_FAILURE";
+import BaseConstant from "./base.constant";
 
-export const GET_FOOD_REQUEST = "GET_FOOD_REQUEST";
-export const GET_FOOD_SUCCESS = "GET_FOOD_SUCCESS";
-export const GET_FOOD_FAILURE = "GET_FOOD_FAILURE";
+class FoodConstants extends BaseConstant {
+  public readonly FOOD_REQUEST: string = this.REQUEST;
+  public readonly FOOD_FAILURE: string = this.FAILURE;
 
-export const CREATE_FOOD_REQUEST = "CREATE_FOOD_REQUEST";
-export const CREATE_FOOD_SUCCESS = "CREATE_FOOD_SUCCESS";
-export const CREATE_FOOD_FAILURE = "CREATE_FOOD_FAILURE";
+  public readonly GET_FOODS_SUCCESS: string = this.success("GET_FOODS");
+  public readonly GET_FOOD_SUCCESS: string = this.success("GET_FOOD");
+  public readonly CREATE_FOOD_SUCCESS: string = this.success("CREATE_FOOD");
+  public readonly UPDATE_FOOD_SUCCESS: string = this.success("UPDATE_FOOD");
+  public readonly DELETE_FOOD_SUCCESS: string = this.success("DELETE_FOOD");
+}
 
-export const UPDATE_FOOD_REQUEST = "UPDATE_FOOD_REQUEST";
-export const UPDATE_FOOD_SUCCESS = "UPDATE_FOOD_SUCCESS";
-export const UPDATE_FOOD_FAILURE = "UPDATE_FOOD_FAILURE";
-
-export const DELETE_FOOD_REQUEST = "DELETE_FOOD_REQUEST";
-export const DELETE_FOOD_SUCCESS = "DELETE_FOOD_SUCCESS";
-export const DELETE_FOOD_FAILURE = "DELETE_FOOD_FAILURE";
+export default new FoodConstants("FOOD");

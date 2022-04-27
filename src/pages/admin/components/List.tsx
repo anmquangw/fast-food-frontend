@@ -39,7 +39,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {users.data.map((item: any, index: number) => (
+          {users.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td className="serial">{index + 1}.</td>
               <td className="avatar">

@@ -6,14 +6,14 @@ export class User extends BaseAction {
 
   public getDetail = (id: string) => (dispatch: any) => {
     dispatch({
-      type: UserConstants.GET_USER_REQUEST,
+      type: UserConstants.default.USER_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: UserConstants.GET_USER_SUCCESS,
+          type: UserConstants.default.GET_USER_SUCCESS,
           payload: result.data,
         });
       })
@@ -21,7 +21,7 @@ export class User extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: UserConstants.GET_USER_FAILURE,
+          type: UserConstants.default.USER_FAILURE,
           payload: error,
         });
       });
@@ -29,7 +29,7 @@ export class User extends BaseAction {
 
   public putUpdate = (id: string, user: IBaseUser) => (dispatch: any) => {
     dispatch({
-      type: UserConstants.CREATE_USER_REQUEST,
+      type: UserConstants.default.USER_REQUEST,
     });
 
     user = {
@@ -40,7 +40,7 @@ export class User extends BaseAction {
       .put(`${this.path}/status/${id}`, user)
       .then((result) => {
         dispatch({
-          type: UserConstants.DELETE_USER_SUCCESS,
+          type: UserConstants.default.DELETE_USER_SUCCESS,
           payload: result.data,
         });
       })
@@ -48,7 +48,7 @@ export class User extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: UserConstants.DELETE_USER_FAILURE,
+          type: UserConstants.default.USER_FAILURE,
           payload: error,
         });
       });
@@ -56,14 +56,14 @@ export class User extends BaseAction {
 
   public deleteRemove = (id: string) => (dispatch: any) => {
     dispatch({
-      type: UserConstants.DELETE_USER_REQUEST,
+      type: UserConstants.default.USER_REQUEST,
     });
 
     this.axios
       .delete(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: UserConstants.DELETE_USER_SUCCESS,
+          type: UserConstants.default.DELETE_USER_SUCCESS,
           payload: result.data,
         });
       })
@@ -71,7 +71,7 @@ export class User extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: UserConstants.DELETE_USER_FAILURE,
+          type: UserConstants.default.USER_FAILURE,
           payload: error,
         });
       });

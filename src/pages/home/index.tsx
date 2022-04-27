@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 import IPage from "../../interfaces/page";
 import List from "./components/List";
 import Chart from "./components/Chart";
 import Pie from "./components/Pie";
 import Bar from "./components/Bar";
 import Widgets from "./components/Widgets";
+import { OrderActions, StatisticsActions } from "../../actions";
 
 const HomePage: React.FunctionComponent<IPage> = (props) => {
+  const dispatch: Dispatch<any> = useDispatch();
+
+  useEffect(() => {
+    dispatch(OrderActions.default.getList());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(StatisticsActions.default.getList());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(StatisticsActions.default.getDetail());
+  }, [dispatch]);
+
   return (
     <>
       <div className="content">

@@ -22,7 +22,7 @@ const BannerPage: React.FunctionComponent<
     name: "",
     image: "",
   });
-  const banners: IBanners = useSelector(
+  const banners: any = useSelector(
     (state: any) => state.bannerReducer,
     shallowEqual
   );
@@ -39,7 +39,7 @@ const BannerPage: React.FunctionComponent<
   }, [banners.isLoading]);
 
   useEffect(() => {
-    if (id && !banners.isLoading) setForm(banners.data[0]);
+    if (id && !banners.isLoading) setForm(banners.data);
   }, [banners.data, id, banners.isLoading]);
 
   function handleChange(e: any) {
@@ -102,8 +102,9 @@ const BannerPage: React.FunctionComponent<
                       type="text"
                       id="name"
                       className="form-control"
-                      value={form?.name}
+                      value={form?.name || ""}
                       onChange={handleChange}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="has-warning form-group">
@@ -116,6 +117,7 @@ const BannerPage: React.FunctionComponent<
                       id="image"
                       className="form-control-file"
                       onChange={handleUpload}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="form-actions form-group">

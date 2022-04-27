@@ -6,14 +6,14 @@ class Order extends BaseAction {
 
   public getList = () => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.GET_ALL_ORDERS_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     this.axios
       .get(`${this.path}`)
       .then((result) => {
         dispatch({
-          type: OrderConstants.GET_ALL_ORDERS_SUCCESS,
+          type: OrderConstants.default.GET_ORDERS_SUCCESS,
           payload: result.data,
         });
       })
@@ -21,7 +21,7 @@ class Order extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: OrderConstants.GET_ALL_ORDERS_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });
@@ -29,14 +29,14 @@ class Order extends BaseAction {
 
   public getListWithUser = () => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.GET_ALL_ORDERS_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/user`)
       .then((result) => {
         dispatch({
-          type: OrderConstants.GET_ALL_ORDERS_SUCCESS,
+          type: OrderConstants.default.GET_ORDERS_SUCCESS,
           payload: result.data,
         });
       })
@@ -44,7 +44,7 @@ class Order extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: OrderConstants.GET_ALL_ORDERS_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });
@@ -52,14 +52,14 @@ class Order extends BaseAction {
 
   public getDetail = (id: string) => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.GET_ORDER_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: OrderConstants.GET_ORDER_SUCCESS,
+          type: OrderConstants.default.GET_ORDER_SUCCESS,
           payload: result.data,
         });
       })
@@ -67,7 +67,7 @@ class Order extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: OrderConstants.GET_ORDER_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });
@@ -75,14 +75,14 @@ class Order extends BaseAction {
 
   public postCreate = (sale: any) => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.CREATE_ORDER_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     this.axios
       .post(`${this.path}`, sale)
       .then((result) => {
         dispatch({
-          type: OrderConstants.CREATE_ORDER_SUCCESS,
+          type: OrderConstants.default.CREATE_ORDER_SUCCESS,
           payload: result.data,
         });
       })
@@ -90,7 +90,7 @@ class Order extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: OrderConstants.CREATE_ORDER_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });
@@ -98,7 +98,7 @@ class Order extends BaseAction {
 
   public putUpdate = (id: string, order: any) => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.UPDATE_ORDER_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     order = {
@@ -109,13 +109,13 @@ class Order extends BaseAction {
       .put(`${this.path}/${id}`, order)
       .then((result) => {
         dispatch({
-          type: OrderConstants.UPDATE_ORDER_SUCCESS,
+          type: OrderConstants.default.UPDATE_ORDER_SUCCESS,
           payload: result.data,
         });
       })
       .catch((error) => {
         dispatch({
-          type: OrderConstants.UPDATE_ORDER_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });
@@ -123,14 +123,14 @@ class Order extends BaseAction {
 
   public deleteRemove = (id: string) => (dispatch: any) => {
     dispatch({
-      type: OrderConstants.DELETE_ORDER_REQUEST,
+      type: OrderConstants.default.ORDER_REQUEST,
     });
 
     this.axios
       .delete(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: OrderConstants.DELETE_ORDER_SUCCESS,
+          type: OrderConstants.default.DELETE_ORDER_SUCCESS,
           payload: result.data,
         });
       })
@@ -138,7 +138,7 @@ class Order extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: OrderConstants.DELETE_ORDER_FAILURE,
+          type: OrderConstants.default.ORDER_FAILURE,
           payload: error,
         });
       });

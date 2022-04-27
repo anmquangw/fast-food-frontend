@@ -1,21 +1,9 @@
-import { useEffect } from "react";
-import { useSelector, shallowEqual } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import logo2Png from "../images/logo2.png";
 import path from "../config/base.path";
 
 function NoAuthLayout(props: any): any {
-  const auth: string = useSelector(
-    (state: any) => state.authReducer,
-    shallowEqual
-  );
-  const history = useHistory();
-
-  useEffect(() => {
-    if (!!auth) history.push(`${path.dashBoard.path}`);
-  }, [auth, history]);
-
   return (
     <>
       <div className="bg-dark">

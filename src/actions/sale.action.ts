@@ -6,14 +6,14 @@ class Sale extends BaseAction {
 
   public getList = () => (dispatch: any) => {
     dispatch({
-      type: SaleConstants.GET_ALL_SALES_REQUEST,
+      type: SaleConstants.default.SALE_REQUEST,
     });
 
     this.axios
       .get(`${this.path}`)
       .then((result) => {
         dispatch({
-          type: SaleConstants.GET_ALL_SALES_SUCCESS,
+          type: SaleConstants.default.GET_SALES_SUCCESS,
           payload: result.data,
         });
       })
@@ -21,7 +21,7 @@ class Sale extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: SaleConstants.GET_ALL_SALES_FAILURE,
+          type: SaleConstants.default.SALE_FAILURE,
           payload: error,
         });
       });
@@ -29,14 +29,14 @@ class Sale extends BaseAction {
 
   public getDetail = (id: string) => (dispatch: any) => {
     dispatch({
-      type: SaleConstants.GET_SALE_REQUEST,
+      type: SaleConstants.default.SALE_REQUEST,
     });
 
     this.axios
       .get(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: SaleConstants.GET_SALE_SUCCESS,
+          type: SaleConstants.default.GET_SALE_SUCCESS,
           payload: result.data,
         });
       })
@@ -44,7 +44,7 @@ class Sale extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: SaleConstants.GET_SALE_FAILURE,
+          type: SaleConstants.default.SALE_FAILURE,
           payload: error,
         });
       });
@@ -52,14 +52,14 @@ class Sale extends BaseAction {
 
   public postCreate = (sale: any) => (dispatch: any) => {
     dispatch({
-      type: SaleConstants.CREATE_SALE_REQUEST,
+      type: SaleConstants.default.SALE_REQUEST,
     });
 
     this.axios
       .post(`${this.path}`, sale)
       .then((result) => {
         dispatch({
-          type: SaleConstants.CREATE_SALE_SUCCESS,
+          type: SaleConstants.default.CREATE_SALE_SUCCESS,
           payload: result.data,
         });
       })
@@ -67,36 +67,31 @@ class Sale extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: SaleConstants.CREATE_SALE_FAILURE,
+          type: SaleConstants.default.SALE_FAILURE,
           payload: error,
         });
       });
   };
 
-  public putUpdate = (id: string, sale: IBaseSale) => (dispatch: any) => {
+  public putUpdate = (id: string, sale: any) => (dispatch: any) => {
+    delete sale._id;
     dispatch({
-      type: SaleConstants.CREATE_SALE_REQUEST,
+      type: SaleConstants.default.SALE_REQUEST,
     });
-
-    sale = {
-      code: sale.code,
-      description: sale.description,
-      img: sale.img,
-      quantity: sale.quantity,
-    };
 
     this.axios
       .put(`${this.path}/${id}`, sale)
       .then((result) => {
         dispatch({
-          type: SaleConstants.CREATE_SALE_SUCCESS,
+          type: SaleConstants.default.UPDATE_SALE_SUCCESS,
+          payload: result.data,
         });
       })
       .catch((error) => {
         console.log({ error });
 
         dispatch({
-          type: SaleConstants.CREATE_SALE_FAILURE,
+          type: SaleConstants.default.SALE_FAILURE,
           payload: error,
         });
       });
@@ -104,14 +99,14 @@ class Sale extends BaseAction {
 
   public deleteRemove = (id: string) => (dispatch: any) => {
     dispatch({
-      type: SaleConstants.DELETE_SALE_REQUEST,
+      type: SaleConstants.default.SALE_REQUEST,
     });
 
     this.axios
       .delete(`${this.path}/${id}`)
       .then((result) => {
         dispatch({
-          type: SaleConstants.DELETE_SALE_SUCCESS,
+          type: SaleConstants.default.DELETE_SALE_SUCCESS,
           payload: result.data,
         });
       })
@@ -119,7 +114,7 @@ class Sale extends BaseAction {
         console.log({ error });
 
         dispatch({
-          type: SaleConstants.DELETE_SALE_FAILURE,
+          type: SaleConstants.default.SALE_FAILURE,
           payload: error,
         });
       });

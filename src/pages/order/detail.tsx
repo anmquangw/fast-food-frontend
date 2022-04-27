@@ -64,7 +64,7 @@ const BannerPage: React.FunctionComponent<
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (id && !orders.isLoading) setForm(orders.data[0]);
+    if (id && !orders.isLoading) setForm(orders.data);
   }, [orders.data, id, orders.isLoading]);
 
   function handleChange(e: any) {
@@ -143,7 +143,7 @@ const BannerPage: React.FunctionComponent<
                   </div>
                 </div>
                 <div className="table-stats order-table ov-h">
-                  <ListDetails datas={orders.data[0]?.orderDetail} />
+                  <ListDetails datas={orders.data?.orderDetail} />
                 </div>
               </div>
             </div>

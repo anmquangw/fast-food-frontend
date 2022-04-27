@@ -1,8 +1,5 @@
-import { useEffect } from "react";
-import { Dispatch } from "redux";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import Loading from "../../../components/Loading";
-import { OrderActions } from "../../../actions";
 
 function List() {
   const orders: IOrders = useSelector(
@@ -37,11 +34,6 @@ function List() {
       type: "badge-danger",
     },
   ];
-  const dispatch: Dispatch<any> = useDispatch();
-
-  useEffect(() => {
-    dispatch(OrderActions.default.getList());
-  }, [dispatch]);
 
   function findStatusShip(statu: any) {
     const find: any = statusShip?.find((item: any) => item.id === statu);
@@ -71,7 +63,7 @@ function List() {
           </tr>
         </thead>
         <tbody>
-          {orders.data.map((item: any, index: number) => (
+          {orders.datas.map((item: any, index: number) => (
             <tr key={index}>
               <td>{index + 1}.</td>
               <td>{item.name}</td>

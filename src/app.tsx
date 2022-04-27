@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter,
   Route,
   Switch,
   RouteComponentProps,
 } from "react-router-dom";
-import logging from "./config/logging";
 import { useSelector, shallowEqual } from "react-redux";
 import { authRoutes, noAuthRoutes, anyRoutes } from "./config/routes";
 
@@ -13,27 +12,13 @@ import AuthLayout from "./layouts/auth.layout";
 import NoAuthLayout from "./layouts/noAuth.layout";
 
 const Application: React.FunctionComponent<{}> = (props) => {
-  const auth: string = useSelector(
+  const auth: any = useSelector(
     (state: any) => state.authReducer,
     shallowEqual
   );
 
-  useEffect(() => {
-    logging.info("Loading application.");
-  }, []);
-
-  useEffect(() => {
-    // token.remove();
-    if (auth) {
-      logging.info("User is logged in.");
-    } else {
-      logging.info("User is not logged in.");
-    }
-  });
-
   const renderRoutes = () => {
-    // token.remove();
-    if (auth)
+    if (auth.isAuthenticated)
       return (
         <AuthLayout>
           {authRoutes.map((route, index) => {

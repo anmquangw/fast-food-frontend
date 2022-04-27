@@ -30,7 +30,7 @@ const FoodTypePage: React.FunctionComponent<
     img4: "",
     img5: "",
   });
-  const foods: IFoods = useSelector(
+  const foods: any = useSelector(
     (state: any) => state.foodReducer,
     shallowEqual
   );
@@ -52,7 +52,7 @@ const FoodTypePage: React.FunctionComponent<
   }, [foods.isLoading]);
 
   useEffect(() => {
-    if (id && !foods.isLoading) setForm(foods.data[0]);
+    if (id && !foods.isLoading) setForm(foods.data);
   }, [foods.data, id, foods.isLoading]);
 
   function handleChange(e: any) {
@@ -115,8 +115,9 @@ const FoodTypePage: React.FunctionComponent<
                       type="text"
                       id="name"
                       className="form-control"
-                      value={form?.name}
+                      value={form?.name || ""}
                       onChange={handleChange}
+                      disabled={isLoading}
                     />
                   </div>
 
@@ -127,18 +128,14 @@ const FoodTypePage: React.FunctionComponent<
                     <select
                       name="idFoodType"
                       id="idFoodType"
-                      disabled={foodTypes.isLoading}
+                      disabled={foodTypes.isLoading || isLoading}
                       className="form-control"
-                      value={form?.idFoodType}
+                      value={form?.idFoodType || ""}
                       onChange={handleChange}
                     >
                       <option value={""}>Lựa chọn danh mục</option>
-                      {foodTypes.data.map((item: any, index: number) => (
-                        <option
-                          key={index}
-                          value={item._id}
-                          selected={item._id === form?.idFoodType}
-                        >
+                      {foodTypes.datas.map((item: any, index: number) => (
+                        <option key={index} value={item._id}>
                           {item.name}
                         </option>
                       ))}
@@ -152,11 +149,12 @@ const FoodTypePage: React.FunctionComponent<
                         </label>
                         <input
                           name="price"
-                          type="text"
+                          type="number"
                           id="price"
                           className="form-control"
-                          value={form?.price}
+                          value={form?.price || 0}
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -170,11 +168,12 @@ const FoodTypePage: React.FunctionComponent<
                         </label>
                         <input
                           name="quantity"
-                          type="text"
+                          type="number"
                           id="quantity"
                           className="form-control"
-                          value={form?.quantity}
+                          value={form?.quantity || 0}
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -191,6 +190,7 @@ const FoodTypePage: React.FunctionComponent<
                           id="img1"
                           className="form-control-file"
                           onChange={handleUpload}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -205,6 +205,7 @@ const FoodTypePage: React.FunctionComponent<
                           id="img2"
                           className="form-control-file"
                           onChange={handleUpload}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -221,6 +222,7 @@ const FoodTypePage: React.FunctionComponent<
                           id="img3"
                           className="form-control-file"
                           onChange={handleUpload}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -235,6 +237,7 @@ const FoodTypePage: React.FunctionComponent<
                           id="img4"
                           className="form-control-file"
                           onChange={handleUpload}
+                          disabled={isLoading}
                         />
                       </div>
                     </div>
@@ -249,6 +252,7 @@ const FoodTypePage: React.FunctionComponent<
                       id="img5"
                       className="form-control-file"
                       onChange={handleUpload}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="has-success form-group">
@@ -260,8 +264,9 @@ const FoodTypePage: React.FunctionComponent<
                       id="description"
                       className="form-control"
                       onChange={handleChange}
-                      value={form?.description}
+                      value={form?.description || ""}
                       rows={5}
+                      disabled={isLoading}
                     />
                   </div>
                   <div className="form-actions form-group">

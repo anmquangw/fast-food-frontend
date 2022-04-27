@@ -1,7 +1,7 @@
-import jsCookies from "js-cookie";
+import jsCookies, { CookiesStatic } from "js-cookie";
 
 class Cookie {
-  public readonly cookie: any = jsCookies;
+  public readonly cookie: CookiesStatic<string> = jsCookies;
 
   public key: string = "";
   public value: string = "";
@@ -18,7 +18,7 @@ class Cookie {
     //   }
   }
 
-  public set = (value: string = ""): any => {
+  public set = (value: string = ""): string => {
     if (value) {
       this.value = value;
       this.cookie.set(this.key, this.value);
@@ -26,9 +26,9 @@ class Cookie {
     return this.value;
   };
 
-  public get = (): any => this.cookie.get(this.key) || this.value;
+  public get = (): string => this.cookie.get(this.key) || this.value;
 
-  public remove = () => {
+  public remove = (): boolean => {
     if (!this.cookie.get(this.key)) return false;
     this.cookie.remove(this.key);
     return true;
@@ -39,6 +39,10 @@ class Token extends Cookie {
   constructor() {
     super();
     this.key = "token";
+  }
+
+  public isToken(): boolean {
+    return this.get() ? true : false;
   }
 }
 
