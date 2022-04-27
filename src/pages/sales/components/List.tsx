@@ -15,7 +15,7 @@ function List() {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(SaleActions.default.getList());
+    if (sales.datas.length === 0) dispatch(SaleActions.default.getList());
   }, [dispatch, sales.datas]);
 
   function handleDelete(id: string) {
