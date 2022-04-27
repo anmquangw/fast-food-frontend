@@ -11,7 +11,7 @@ class Order extends BaseAction {
 
     this.axios
       .get(`${this.path}`)
-      .then((result) => {
+      .then((result: any) => {
         dispatch({
           type: OrderConstants.default.GET_ORDERS_SUCCESS,
           payload: result.data,
