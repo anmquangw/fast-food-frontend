@@ -22,16 +22,12 @@ function Chart() {
         const sums: Array<any> = statistics?.months?.map(
           (month: any) => month.sum
         );
-        const sumsR: Array<any> = sums.reduce(
-          (init, item) => [item, ...init],
-          []
-        );
 
         var chart = new Chartist.Line(
           "#traffic-chart",
           {
             labels: months,
-            series: [sumsR, sums],
+            series: [sums],
           },
           {
             low: 0,
